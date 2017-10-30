@@ -1,5 +1,5 @@
 // Copyright 2015 M. Teichgräber. All rights reserved.
-// Use of this source code is governed by a BSD-style
+// Use of this source code is governed by an MIT-style
 // license that can be found in the LICENSE file.
 
 // Package vfsutil implements some helper types and functions for
