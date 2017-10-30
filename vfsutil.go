@@ -24,8 +24,8 @@ func (f *file) Label() string {
 	return f.label
 }
 
-// The Label interface is satisfied by the `file` object returned
-// by labeledFileSystem.Open satisfies this interface.
+// The Label interface is satisfied by the file object returned
+// by labeledFileSystem.Open.
 type Label interface {
 	Label() string
 }
