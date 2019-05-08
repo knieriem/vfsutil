@@ -7,6 +7,8 @@
 package vfsutil
 
 import (
+	"os"
+
 	"golang.org/x/tools/godoc/vfs"
 )
 
@@ -47,4 +49,22 @@ func (fs *labeledFileSystem) Open(name string) (vfs.ReadSeekCloser, error) {
 		return nil, err
 	}
 	return &file{ReadSeekCloser: rsc, label: fs.label}, nil
+}
+
+// Stat implements vfs.FileSystem.Stat for labeledFileSystem
+func (fs *labeledFileSystem) Stat(name string) (os.FileInfo, error) {
+	fi, err := fs.FileSystem.Stat(name)
+	if err != nil {
+		return nil, err
+	}
+	return &fileInfo{FileInfo: fi, label: fs.label}, nil
+}
+
+type fileInfo struct {
+	os.FileInfo
+	label string
+}
+
+func (fi *fileInfo) Label() string {
+	return fi.label
 }
